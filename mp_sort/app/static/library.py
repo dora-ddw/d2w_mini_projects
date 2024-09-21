@@ -2,7 +2,11 @@ from org.transcrypt.stubs.browser import *
 import random
 
 def gen_random_int(number, seed):
-	pass
+	array = list(range(num))
+	random.seed(seed)
+	random.shuffle(array)
+ 
+	return array
 
 def generate():
 	number = 10
@@ -10,19 +14,22 @@ def generate():
 
 	# call gen_random_int() with the given number and seed
 	# store it to the variable array
-	pass
-
-	array = None
-	# convert the items into one single string 
+	array = gen_random_int(number, seed)
+ 
+	# convert the items into one single string
+	array_str = ''
+ 
 	# the number should be separated by a comma
+	for item in array[:-1]:
+		array_str.append(str(item), ', ')
+  
 	# and a full stop should end the string.
-	pass
-
-	array_str = None
+	array_str.append('.')
 
 	# This line is to placed the string into the HTML
 	# under div section with the id called "generate"	
 	document.getElementById("generate").innerHTML = array_str
+	return array_str
 
 
 def sortnumber1():
@@ -35,8 +42,16 @@ def sortnumber1():
 		- call your sort function, either bubble sort or insertion sort
 		- create a string of the sorted numbers and store it in array_str
 	'''
-	pass
-
+	# get the list of numbers from the "generate" HTML id, use document.getElementById(id).innerHTML
+	document.getElementById("generate").innerHTML = array_str
+ 
+	# create a list of integers from the string of numbers
+	numstring = gen_random_int
+ 
+	# call your sort function, either bubble sort or insertion sort
+		
+	# create a string of the sorted numbers and store it in array_str
+	
 	array_str = None
 	
 	document.getElementById("sorted").innerHTML = array_str
