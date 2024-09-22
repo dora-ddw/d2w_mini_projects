@@ -2,7 +2,7 @@ from org.transcrypt.stubs.browser import *
 import random
 
 def gen_random_int(number, seed):
-	array = list(range(num))
+	array = list(range(number))
 	random.seed(seed)
 	random.shuffle(array)
  
@@ -35,33 +35,32 @@ def generate():
 	# document.getElementbyId("generate").innerHTML
 	return array_str
 
+def insertionSort(numlist):
+    while not is_sorted:        
+        end = len(numlist)
+        is_sorted = False # check if the string is sorted
+        for ptr in range(1, end):
+            rightptr = ptr
+            leftptr = rightptr - 1 # left side of the item of interest will be sorted
+            while leftptr >= 0 and numlist[rightptr] < numlist[leftptr]:
+                numlist[rightptr], numlist[leftptr] = numlist[leftptr], numlist[rightptr]
+                leftptr -= 1
+                rightptr -= 1
+                is_sorted = True # by the time the pointer reaches the end, all elements should have been sorted
+    return numlist
 
 def sortnumber1():
 	'''	This function is used in Exercise 1.
 		The function is called when the sort button is clicked.
 	'''
 	# get the list of numbers from the "generate" HTML id, use document.getElementById(id).innerHTML
-	document.getElementById("generate").innerHTML = array
+	document.getElementById("generate").innerHTML = array_str
  
 	# create a list of integers from the string of numbers
 	numslist = gen_random_int()
  
 	# call your sort function, either bubble sort or insertion sort
-	end = len(numstring)
-	is_sorted = False # check if the string is sorted
- 
-	while not is_sorted:        
-		for ptr in range(1, end):
-			rightptr = ptr
-			leftptr = rightptr - 1 # left side of the item of interest will be sorted
-			
-			while leftptr >= 0 and numslist[rightptr] < numslist[leftptr]:
-				numslist[rightptr], numslist[leftptr] = numslist[leftptr], numslist[rightptr]
-				leftptr -= 1
-				rightptr -= 1
-				# by the time the pointer reaches the end, all elements should have been sorted
-				is_sorted = True
-			
+	sortedlist = insertionSort(numslist)	
  
 	# create a string of the sorted numbers and store it in array_str
  	# array_str = str(elements for elements in array) # idk if it works liddis
@@ -93,11 +92,20 @@ def sortnumber2():
 		window.alert("Your textbox is empty")
 		return
 
-	# Your code should start from here
-	# store the final string to the variable array_str
-	pass
+	# Get the numbers from a string variable "value"
+	# Split the string using comma as the separator and convert them to a list of numbers
+	valuenums = []
+	for item in value:
+		if item.isnumeric():
+			valuenums.append(int(item))
 
-	array_str = None
+	# call your sort function, either bubble sort or insertion sort
+	sortedvalues = insertionSort(valuenums)
+
+	# create a string of the sorted numbers and store the final string to the variable array_str
+	array_str = []
+	for nummer in sortedvalues:
+		array_str.append(str(nummer))
 
 	document.getElementById("sorted").innerHTML = array_str
 
